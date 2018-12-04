@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Star Social</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'simplesocial/css/master.css' %}">
+
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Star Social</a>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+	{% if user.is_authenticated %}
+      <a class="nav-item nav-link active" href="#">Post</a>
+      <a class="nav-item nav-link" href="#">Groups</a>
+      <a class="nav-item nav-link" href="#">Create Group</a>
+      <a class="nav-item nav-link" href="{% url 'accounts:logout' %}">Logout</a>
+	{% else %}
+	  <a class="nav-item nav-link active" href="#">Groups</a>
+      <a class="nav-item nav-link" href="{% url 'accounts:login' %}">Login</a>
+      <a class="nav-item nav-link" href="{% url 'accounts:signup' %}">Sign Up</a>
+	{% endif %}
+    </div>
+  </div>
+</nav>
+<div class="container mycontent">
+    {% block content %}
+
+    {% endblock %}
+</div>
+</body>
+</html>
